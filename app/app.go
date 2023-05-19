@@ -106,6 +106,7 @@ import (
 	titanmodule "github.com/titanlab/titan/x/titan"
 	titanmodulekeeper "github.com/titanlab/titan/x/titan/keeper"
 	titanmoduletypes "github.com/titanlab/titan/x/titan/types"
+
 	// this line is used by starport scaffolding # stargate/app/moduleImport
 
 	appparams "github.com/titanlab/titan/app/params"
@@ -113,8 +114,8 @@ import (
 )
 
 const (
-	AccountAddressPrefix = "cosmos"
-	Name                 = "titan"
+	AccountAddressPrefix = "titan" // AccountAddressPrefix defines the prefix to be used for account addresses.
+	Name                 = "titan" // Name defines the name of the application.
 )
 
 // this line is used by starport scaffolding # stargate/wasm/app/enabledProposals
@@ -265,6 +266,8 @@ func New(
 	appCodec := encodingConfig.Marshaler
 	cdc := encodingConfig.Amino
 	interfaceRegistry := encodingConfig.InterfaceRegistry
+
+	sdk.DefaultPowerReduction = sdk.NewIntFromUint64(1000)
 
 	bApp := baseapp.NewBaseApp(
 		Name,
